@@ -11,6 +11,7 @@ import (
 func loggingHandler(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.Method, r.URL.String())
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		h.ServeHTTP(w, r)
 	})
 }
